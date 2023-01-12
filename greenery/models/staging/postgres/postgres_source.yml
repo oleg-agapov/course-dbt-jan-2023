@@ -1,0 +1,10 @@
+version: 2
+
+source:
+  - name: postgres
+    database: raw
+    schema: public
+
+    tables:
+      - name: orders
+      
