@@ -1,0 +1,10 @@
+version: 2
+
+analyses:
+  - name: week1
+    docs:
+      show: false
+  
+  - name: week2
+    docs:
+      show: false

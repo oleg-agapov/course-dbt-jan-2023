@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: fct_user_sessions
+    description: Information about sessions made on Greenery website
+    columns:
+      - name: user_id
+      - name: session_id
+      - name: session_started_ts_utc
+        description: Calculated as the first timestamp for the session
+      - name: session_ended_ts_utc
+        description: Calculated as the last timestamp for the session
+      - name: page_view
+        description: Number of page views made by user during the session
+      - name: add_to_cart
+        description: Number of times user added something to cart during the session
+      - name: checkout
+        description: Number of times user proceeded to checkout during the session
+      - name: package_shipped
+        description: Number of times package was shipped

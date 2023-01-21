@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: fct_user_orders
+    description: |
+      Model that show information about users and their purchases.
+
+      Pay attention that this table includes all users, even those who made no order. You can find such users by looking at the `is_buyer` flag.
+    
+    columns:
+      - name: user_id
+        tests:
+          - not_null
+          - unique
+      - name: is_buyer
+        description: Shows if current user have made at least one order at Greenery
+        tests:
+          - not_null
+          - unique
+      - name: is_frequent_buyer
+        description: Shows if user made 2 or more order
+        tests:
+          - not_null
+          - unique
+      - name: first_order_ts_utc
+      - name: last_order_ts_utc
+      - name: orders
+        description: Total number of orders made by the user
+      - name: spend_usd
+        description: Total lifetime spend amount in USD
+      - name: distinct_products_purchased
+        description: Number of unique products purchased
+      - name: items_purchased
+        description: Number of total items purchased

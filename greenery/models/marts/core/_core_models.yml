@@ -1,0 +1,72 @@
+version: 2
+
+models:
+  - name: dim_products
+    description: Information about products at Greenery
+    columns:
+      - name: product_id
+        tests:
+          - not_null
+          - unique
+      - name: product_name
+      - name: product_price
+        tests:
+          - not_null
+          - positive_values
+      - name: left_in_stock
+      - name: purchased
+        description: How many items of that product were purchased
+
+  - name: dim_users
+    description: Information about users at Greenery
+    columns:
+      - name: user_id
+        tests:
+          - not_null
+          - unique
+      - name: first_name
+      - name: last_name
+      - name: email
+      - name: phone_number
+      - name: created_ts_utc
+      - name: updated_at_utc
+      - name: address_id
+      - name: address
+      - name: zipcode
+      - name: state
+      - name: country
+  
+  - name: fct_orders
+    description: Information about orders made at Greenery
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - unique
+      - name: user_id
+      - name: promo_id
+      - name: discount_usd
+      - name: promo_status
+      - name: address_id
+      - name: address
+      - name: zipcode
+      - name: state
+      - name: country
+      - name: order_ts_utc
+      - name: order_cost_usd
+        tests:
+          - not_null
+          - positive_values
+      - name: shipping_cost_usd
+        tests:
+          - not_null
+          - positive_values
+      - name: order_total_usd
+        tests:
+          - not_null
+          - positive_values
+      - name: tracking_id
+      - name: shipping_service
+      - name: estimated_delivery_ts_utc
+      - name: delivered_ts_utc
+      - name: order_status

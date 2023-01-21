@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: int_user_order_product
+    description: Model that connects users, order and purchased products
+    columns:
+      - name: user_id
+        tests:
+          - not_null
+      - name: order_id
+        tests:
+          - not_null
+      - name: order_ts_utc
+        tests:
+          - not_null
+      - name: product_id
+        tests:
+          - not_null
+      - name: quantity
+        tests:
+          - not_null
