@@ -27,3 +27,7 @@ select *
 from dev_db.dbt_olegagapovpaltacom.orders_snapshot
 where dbt_valid_to is not null
 ```
+
+## Week 2 models
+
+![Week 2 DAG](./dag.png)
