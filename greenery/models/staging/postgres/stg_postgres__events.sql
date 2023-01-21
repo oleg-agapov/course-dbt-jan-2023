@@ -8,7 +8,7 @@ select
 	, session_id
 	, user_id
 	, page_url
-	, created_at
+	, created_at::timestamp_ntz as event_ts_utc
 	, event_type
 	, order_id
 	, product_id

@@ -5,6 +5,6 @@ with _src as (
 
 select
     promo_id
-	, discount
-	, status
+	, discount as discount_usd
+	, status as promo_status
 from _src

@@ -26,7 +26,7 @@ models:
         description: UUID of the user that this event is associated with
       - name: page_url
         description: URL that the event happened on
-      - name: created_at
+      - name: event_ts_utc
         description: Timestamp of the event
       - name: event_type
         description: Type of event
@@ -56,23 +56,23 @@ models:
         description: PromoId if any was used in the order
       - name: address_id
         description: Delivery address for this order
-      - name: created_at
+      - name: created_ts_utc
         description: Timestamp when the order was created
-      - name: order_cost
+      - name: order_cost_usd
         description: Dollar about of the items in the order
-      - name: shipping_cost
+      - name: shipping_cost_usd
         description: Cost of shipping for the order
-      - name: order_total
+      - name: order_total_usd
         description: Total cost of the order including shipping
       - name: tracking_id
         description: Tracking number for the order/package
       - name: shipping_service
         description: Company that was used for shipping
-      - name: estimated_delivery_at
+      - name: estimated_delivery_ts_utc
         description: Estimated date of delivery
-      - name: delivered_at
+      - name: delivered_ts_utc
         description: Actual timestamp of delivery
-      - name: status
+      - name: order_status
         description: Status of the order
 
   - name: stg_postgres__products
@@ -80,11 +80,11 @@ models:
     columns:
       - name: product_id
         description: UUID for each unique product on platform
-      - name: name
+      - name: product_name
         description: Name of the product
-      - name: price
+      - name: product_price
         description: Price of the product
-      - name: inventory
+      - name: left_in_stock
         description: Amount of the inventory we have for this product
 
   - name: stg_postgres__promos
@@ -92,9 +92,9 @@ models:
     columns:
       - name: promo_id
         description: Each unique promocode on platform
-      - name: discount
+      - name: discount_usd
         description: Absolute dollar amount that is given off with the code
-      - name: status
+      - name: promo_status
         description: Is the promo code active or disabled
   
   - name: stg_postgres__users
@@ -110,9 +110,9 @@ models:
         description: email address of the user
       - name: phone_number
         description: phone number of the user
-      - name: created_at
+      - name: created_ts_utc
         description: timestamp the user was created
-      - name: updated_at
+      - name: updated_ts_utc
         description: timestamp the user was last updated
       - name: address_id
         description: default delivery address for the user

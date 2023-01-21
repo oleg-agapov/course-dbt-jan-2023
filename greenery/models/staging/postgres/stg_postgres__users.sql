@@ -9,7 +9,7 @@ select
 	, last_name
 	, email
 	, phone_number
-	, created_at
-	, updated_at
+	, created_at::timestamp_ntz as created_ts_utc
+	, updated_at::timestamp_ntz as updated_at_utc
 	, address_id
 from _src
