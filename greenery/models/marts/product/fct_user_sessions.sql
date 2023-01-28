@@ -1,28 +1,41 @@
+{% set event_types = dbt_utils.get_column_values(table=ref('stg_postgres__events'), column='event_type') %}
+
 with events as (
     select *
     from {{ ref('stg_postgres__events')}}
 )
-, user_sessions as (
+, order_products as (
+    select *
+    from {{ ref('int_user_order_product')}}
+)
+, session_dates as (
+    select *
+    from {{ ref('int_session_dates') }}
+)
+, user_product_sessions as (
     select 
-        user_id
-        , session_id
-        , sum(case when event_type = 'page_view' then 1 else 0 end) as page_view
-        , sum(case when event_type = 'add_to_cart' then 1 else 0 end) as add_to_cart
-        , sum(case when event_type = 'checkout' then 1 else 0 end) as checkout
-        , sum(case when event_type = 'package_shipped' then 1 else 0 end) as package_shipped
-        , min(event_ts_utc) AS session_started_ts_utc
-        , max(event_ts_utc) AS session_ended_ts_utc
-    from events
-    group by 1, 2
+        e.session_id
+        , e.user_id
+        , coalesce(e.product_id, op.product_id) as product_id
+        {% for event_type in event_types %}
+        , {{ sum_of('e.event_type', event_type) }} as {{ event_type }}
+        {% endfor %}
+    from events e
+    left join order_products op
+        on op.order_id = e.order_id
+    group by 1, 2, 3
 )
 
-select 
-    user_id
-    , session_id
-    , session_started_ts_utc
-    , session_ended_ts_utc
-    , page_view
-    , add_to_cart
-    , checkout
-    , package_shipped
-from user_sessions
+select
+    s.session_id
+    , s.user_id
+    , s.product_id
+    , d.session_started_ts_utc
+    , d.session_ended_ts_utc
+    , s.page_view
+    , s.add_to_cart
+    , s.checkout
+    , s.package_shipped
+from user_product_sessions s
+left join session_dates d on
+    d.session_id = s.session_id
