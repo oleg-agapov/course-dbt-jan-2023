@@ -5,6 +5,7 @@ exposures:
     description: |
       Product funnel shows how users navigate through our website to reach the checkout
     type: dashboard
+    url: https://app.sigmacomputing.com/corise-dbt/workbook/Funnel-dashboard-o9R5AoDtM4CWdO61b3HSE/edit?:nodeId=2vbhQWiRkT
     maturity: high
     owner:
       name: Oleg Agapov
