@@ -1,0 +1,13 @@
+version: 2
+
+exposures:  
+  - name: Product Funnel Dashboard
+    description: |
+      Product funnel shows how users navigate through our website to reach the checkout
+    type: dashboard
+    maturity: high
+    owner:
+      name: Oleg Agapov
+      email: contact@olegagapov.com
+    depends_on:
+      - ref('fct_user_sessions')
