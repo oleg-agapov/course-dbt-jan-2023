@@ -30,7 +30,7 @@ Three questions to answer:
 - Which steps in the funnel have largest drop off points?
 - How Product and Engineering teams are improving these metrics on an ongoing basis (over time)?
 
-To address all the questions (ans some more) I've built a dashboard in Sigma:
+To address all the questions (ans some more) I've built a [dashboard in Sigma](https://app.sigmacomputing.com/corise-dbt/workbook/workbook-5upaWGEVNvsueM88Db29OS):
 
 ![Funnel dashboard](./dashboard.png)
 
